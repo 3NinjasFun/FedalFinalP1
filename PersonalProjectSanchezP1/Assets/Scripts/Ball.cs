@@ -14,22 +14,30 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //calling rigidbody components
         ballRb = GetComponent<Rigidbody>();
+        //adding force to ball
         ballRb.AddForce(Force(), ForceMode.Impulse);
+        //adding torque to ball
         ballRb.AddTorque(Torque(), 0, 0, ForceMode.Impulse); ;
+        //transforming on position
         transform.position = SpawnPos();
+        //Finding GameManager to use in Ball script
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     Vector3 Force()
     {
+        //Function adding force backwards
         return Vector3.back * speed;
     }
     float Torque()
     {
+        //Fuction to add random Torque
         return Random.Range(500, 1000);
     }
     Vector3 SpawnPos()
     {
+        //Function setting spawn position
         return new Vector3(xSpawnPos, ySpawnPos, zSpawnPos);
     }
     

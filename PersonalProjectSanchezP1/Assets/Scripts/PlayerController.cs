@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //number value that controls the speed the player moves 
     public float speed;
     float horizontalInput;
     float verticalInput;
 
+    //number values that are used to bound the players vertical and horizontal movement
     public float verticalBound;
     public float horizontalBound;
     // Start is called before the first frame update
@@ -21,17 +23,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MovePlayer();
-
+        //calling both move and limit player
         LimitPlayer();
     }
     private void MovePlayer () 
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
+   
+        //when the "Vertical" key is pressed the player moves up or down
         transform.Translate(Vector3.up * speed * Time.deltaTime * verticalInput);
+        //when "Horizontal" key is inputed the player moves left or right
         transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
     }
+    //this script limits both vertical and horizontal movement
     private void LimitPlayer ()
     {
         if (transform.position.y > verticalBound)

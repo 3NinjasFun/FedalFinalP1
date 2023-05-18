@@ -9,14 +9,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //at the start of this script no matter what start game will be called
         StartGame();
     }
     public void StartGame()
     {
+        //the ball will spawn every 2 seconds, repeated every 1
         InvokeRepeating("SpawnBall", 2, 1);
+
     }
     void SpawnBall()
     {   
+        //every time the function Spawn Ball will be called 
+        //in this case in Invoke Repeating a ball will be instantiated
          Instantiate(ball);
     }
 
