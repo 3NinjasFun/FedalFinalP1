@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RacketCollision : MonoBehaviour
 {
-    private float thrust = 120.0f;
+    private float thrust = 80.0f;
     public Rigidbody Ballrb;
     public float Score;
     public int ScoreToAdd;
