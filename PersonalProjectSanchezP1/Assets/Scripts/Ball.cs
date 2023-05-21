@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public float xSpawnPos;
     public float ySpawnPos;
     public float zSpawnPos;
+    public float xThrustRange;
     private GameManager gameManager;
 
     // Start is called before the first frame update
@@ -17,7 +18,7 @@ public class Ball : MonoBehaviour
         //calling rigidbody components
         ballRb = GetComponent<Rigidbody>();
         //adding force to ball
-        ballRb.AddForce(Force(), ForceMode.Impulse);
+        ballRb.AddForce(Random.Range(xThrustRange, -xThrustRange), Random.Range(8,0), -60, ForceMode.Impulse);
         //adding torque to ball
         ballRb.AddTorque(Torque(), 0, 0, ForceMode.Impulse); ;
         //transforming on position
@@ -25,11 +26,7 @@ public class Ball : MonoBehaviour
         //Finding GameManager to use in Ball script
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-    Vector3 Force()
-    {
-        //Function adding force backwards
-        return Vector3.back * speed;
-    }
+    
     float Torque()
     {
         //Fuction to add random Torque

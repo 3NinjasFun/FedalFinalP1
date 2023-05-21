@@ -4,12 +4,37 @@ using UnityEngine;
 
 public class RacketCollision : MonoBehaviour
 {
-    public float thrust = 1.0f;
-    public Rigidbody Racketrb;
+    private float thrust = 120.0f;
+    public Rigidbody Ballrb;
+    public float Score;
+    public int ScoreToAdd;
+    private GameManager gameManager;
+    float ballXRange = 15;
+    
     
     void Start ()
     {
-        Racketrb = GetComponent<Rigidbody>();
-        Racketrb.AddForce(0, 0, thrust, ForceMode.Impulse);
+        Ballrb = GetComponent<Rigidbody>();
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Player")
+        { 
+
+            Ballrb.velocity = Vector3.zero;
+            Ballrb.AddForce(Random.Range(ballXRange, -ballXRange) ,Random.Range(0, -10) , thrust, ForceMode.Impulse);
+            
+
+            gameManager.UpdateScore(1);
+        }
+        if (collision.gameObject.name == "GameBound")
+        {
+            gameManager.GameOver();
+        }
     }
 }

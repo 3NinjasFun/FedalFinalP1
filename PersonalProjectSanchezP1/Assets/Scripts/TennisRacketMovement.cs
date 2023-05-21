@@ -6,7 +6,7 @@ public class TennisRacketMovement : MonoBehaviour
 {
 
     Vector3 pos;
-    public float speed =  1f;
+    public float speed = 1;
     //Tennis Racket becomes mouse cursor
     void Update ()
     {
