@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RacketCollision : MonoBehaviour
 {
+    public GameObject gameObject;
     public Rigidbody Ballrb;
     public float thrust = 80.0f;
     public float force = 100.0f;
@@ -31,7 +32,7 @@ public class RacketCollision : MonoBehaviour
         if (collisionInfo.gameObject.name == "GameBound")
         {
             gameManager.GameOver();
-            Debug.Log("Works");
+            Destroy(gameObject);
         }
 
         

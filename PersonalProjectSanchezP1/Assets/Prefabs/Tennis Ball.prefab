@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128f195660a98b447992329f709af529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObject: {fileID: 6964378231935035499}
   Ballrb: {fileID: 6964378231935035492}
   thrust: 500
   force: 500
@@ -193,4 +194,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8261313d91dd0ee4b9b4063511670d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 3.5
+  interval: 1
