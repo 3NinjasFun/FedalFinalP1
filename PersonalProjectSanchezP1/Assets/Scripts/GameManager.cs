@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class GameManager : MonoBehaviour
     private int score;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreAfterText;
     public TextMeshProUGUI gameOverText;
+    public Button restartButton;
 
 
     // Start is called before the first frame update
@@ -26,12 +29,15 @@ public class GameManager : MonoBehaviour
     {
         //the ball will spawn every 2 seconds, repeated every 1
         
-        
-            InvokeRepeating("SpawnBall", 2, 2);
+        score = 0;
+        UpdateScore(0);
+        InvokeRepeating("SpawnBall", 2, 5);
 
-            UpdateScore(0);
-        
-        
+        gameOverText.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(true);
+        scoreAfterText.gameObject.SetActive(false);
+
     }
     void SpawnBall()
     {
@@ -46,15 +52,26 @@ public class GameManager : MonoBehaviour
     {
         score += ScoreToAdd;
         scoreText.text = "Score: " + score;
+        scoreAfterText.text = "Score: " + score;
+
     }
 
     public void GameOver()
     {
-        gameOverText.gameObject.SetActive(true);
+        gameOverText.gameObject.SetActive(true);       
+        restartButton.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(false);
+        scoreAfterText.gameObject.SetActive(true);
+
         isGameActive = false;
         Time.timeScale= 0f;
     }
 
+    public void Restart()
+    {
+        StartGame();
+        Time.timeScale = 1f;
+    }
 
     // Update is called once per frame
     void Update()
