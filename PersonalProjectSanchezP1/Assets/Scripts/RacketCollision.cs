@@ -19,16 +19,26 @@ public class RacketCollision : MonoBehaviour
 
     public void OnCollisionEnter(Collision collisionInfo)
     {
-        if(collisionInfo.collider.tag == "Player")
+        if(collisionInfo.collider.tag == "WilsonProStaff")
         {
-            Ballrb.AddForce(transform.forward * 500, ForceMode.Impulse);  
-            //Ballrb.AddForce(0, 0, force, ForceMode.Impulse);
+            //Ballrb.AddForce(transform.forward * 500, ForceMode.Impulse);  
+            
             gameManager.UpdateScore(1);
+            
+                
         }
 
         if (collisionInfo.gameObject.name == "GameBound")
         {
             gameManager.GameOver();
+            Debug.Log("Works");
         }
+
+        
+        
+    }
+    public void OnTriggerEnter(Collider trigger)
+    {
+        
     }
 }
