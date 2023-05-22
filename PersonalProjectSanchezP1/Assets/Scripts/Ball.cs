@@ -18,7 +18,7 @@ public class Ball : MonoBehaviour
         //calling rigidbody components
         ballRb = GetComponent<Rigidbody>();
         //adding force to ball
-        ballRb.AddForce(Random.Range(xThrustRange, -xThrustRange), Random.Range(8,0), -60, ForceMode.Impulse);
+        ballRb.AddForce(Random.Range(xThrustRange, -xThrustRange), Random.Range(1,0), -45, ForceMode.Impulse);
         //adding torque to ball
         ballRb.AddTorque(Torque(), 0, 0, ForceMode.Impulse); ;
         //transforming on position

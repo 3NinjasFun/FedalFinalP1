@@ -7,6 +7,7 @@ public class RacketCollision : MonoBehaviour
 {
     public Rigidbody Ballrb;
     public float thrust = 80.0f;
+    public float force = 100.0f;
     private GameManager gameManager;
 
     private void Start()
@@ -20,8 +21,8 @@ public class RacketCollision : MonoBehaviour
     {
         if(collisionInfo.collider.tag == "Player")
         {
-            
-            Ballrb.AddForce(0, 0, thrust, ForceMode.Impulse);
+            Ballrb.AddForce(transform.forward * 500, ForceMode.Impulse);  
+            //Ballrb.AddForce(0, 0, force, ForceMode.Impulse);
             gameManager.UpdateScore(1);
         }
 
