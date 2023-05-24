@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using TMPro;
 using UnityEngine.UI;
+using System.Threading;
+using Unity.VisualScripting;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +18,15 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI scoreAfterText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI countdownText;
+    public TextMeshProUGUI instructionText;
+    public GameObject backGround;
     public Button restartButton;
+    private float timeLeft;
+
+    
+    
+    
 
 
     // Start is called before the first frame update
@@ -23,21 +34,49 @@ public class GameManager : MonoBehaviour
     {
         //at the start of this script no matter what start game will be called
         StartGame();
-        isGameActive= true;
+        
+        
+        
+        isGameActive = true;
     }
+
+
+    
+
+
     public void StartGame()
     {
         //the ball will spawn every 2 seconds, repeated every 1
-        
+
+        timeLeft = 7;
+
         score = 0;
         UpdateScore(0);
-        InvokeRepeating("SpawnBall", 2, 5);
+        InvokeRepeating("SpawnBall", 7, 5);
 
         gameOverText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
+        backGround.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(true);
         scoreAfterText.gameObject.SetActive(false);
+        countdownText.gameObject.SetActive(true);
+        instructionText.gameObject.SetActive(true);
 
+    }
+
+    public void ReStartGame()
+    {
+        timeLeft = 3;
+        score = 0;
+        UpdateScore(0);
+        
+
+        gameOverText.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
+        backGround.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(true);
+        scoreAfterText.gameObject.SetActive(false);
+        countdownText.gameObject.SetActive(true);
     }
     void SpawnBall()
     {
@@ -60,6 +99,7 @@ public class GameManager : MonoBehaviour
     {
         gameOverText.gameObject.SetActive(true);       
         restartButton.gameObject.SetActive(true);
+        backGround.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(false);
         scoreAfterText.gameObject.SetActive(true);
 
@@ -69,13 +109,20 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        StartGame();
+        ReStartGame();
         Time.timeScale = 1f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timeLeft -= Time.deltaTime;
+        TimeSpan timeSpanLeft = TimeSpan.FromSeconds(timeLeft);
+        countdownText.text = timeSpanLeft.ToString(@"ss");
+        if (timeLeft < 0)
+        {
+            countdownText.gameObject.SetActive(false);
+            instructionText.gameObject.SetActive(false);
+        }
     }
 }

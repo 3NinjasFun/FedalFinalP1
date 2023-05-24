@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     //number values that are used to bound the players vertical and horizontal movement
     public float verticalBound;
     public float horizontalBound;
+    public float rotationBound;
     // Start is called before the first frame update
     void Start()
     {

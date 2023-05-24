@@ -7,12 +7,16 @@ public class TennisRacketMovement : MonoBehaviour
     public Vector3 rotation;
     Vector3 pos;
     public float speed = 12;
+    public float rotationBound = 15;
     //Tennis Racket becomes mouse cursor
     void Update ()
     {
         pos = Input.mousePosition;
         pos.z = speed;
         transform.position = Camera.main.ScreenToWorldPoint(pos);
+        
+        
+
         if(Input.GetKey(KeyCode.A))
         {
             transform.Rotate(rotation * Time.deltaTime);
@@ -29,6 +33,8 @@ public class TennisRacketMovement : MonoBehaviour
         {
              transform.Translate(Vector3.forward * Time.deltaTime * speed);
         }
+
+        
     }
 
 }

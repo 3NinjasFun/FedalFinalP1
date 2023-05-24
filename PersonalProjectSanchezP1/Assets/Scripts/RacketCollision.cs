@@ -32,7 +32,12 @@ public class RacketCollision : MonoBehaviour
         if (collisionInfo.gameObject.name == "GameBound")
         {
             gameManager.GameOver();
-            Destroy(gameObject);
+            GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Ball");
+            foreach (GameObject obj in allObjects)
+            {
+                Destroy(obj);
+            }
+                Destroy(gameObject);
         }
 
         
