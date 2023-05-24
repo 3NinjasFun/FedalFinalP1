@@ -19,11 +19,11 @@ public class TennisRacketMovement : MonoBehaviour
 
         if(Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(rotation * Time.deltaTime);
+            transform.Rotate(-rotation * Time.deltaTime);
         }
         else if(Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(-rotation * Time.deltaTime);
+            transform.Rotate(rotation * Time.deltaTime);
         }
         if(Input.GetKey(KeyCode.S))
         {
