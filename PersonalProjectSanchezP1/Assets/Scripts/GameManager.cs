@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
 
     public GameObject ball;
+    public GameObject DuelWield;
     private int score;
 
     public TextMeshProUGUI scoreText;
@@ -123,6 +124,10 @@ public class GameManager : MonoBehaviour
         {
             countdownText.gameObject.SetActive(false);
             instructionText.gameObject.SetActive(false);
+        }
+        if(score > 9 && Input.GetKey(KeyCode.X))
+        {
+            DuelWield.gameObject.SetActive(true);
         }
     }
 }

@@ -24,17 +24,6 @@ public class TennisRacketMovement : MonoBehaviour
         else if(Input.GetKey(KeyCode.D))
         {
             transform.Rotate(rotation * Time.deltaTime);
-        }
-        if(Input.GetKey(KeyCode.S))
-        {
-             transform.Translate(Vector3.back * Time.deltaTime * speed);
-        }
-        else if(Input.GetKey(KeyCode.W))
-        {
-             transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        }
-
-        
+        }        
     }
-
 }
