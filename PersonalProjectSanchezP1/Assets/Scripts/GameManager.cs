@@ -15,15 +15,17 @@ public class GameManager : MonoBehaviour
     public GameObject ball;
     public GameObject DuelWield;
     private int score;
-
+    private int highScore;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI scoreAfterText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI countdownText;
     public TextMeshProUGUI instructionText;
+    public TextMeshProUGUI highScoreText;
     public GameObject backGround;
     public Button restartButton;
     private float timeLeft;
+    
 
     
     
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         //at the start of this script no matter what start game will be called
         StartGame();
-        
+        highScore= 0;
         
         
         isGameActive = true;
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
         backGround.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(true);
         scoreAfterText.gameObject.SetActive(false);
+        highScoreText.gameObject.SetActive(false);  
         countdownText.gameObject.SetActive(true);
         instructionText.gameObject.SetActive(true);
 
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour
         backGround.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(true);
         scoreAfterText.gameObject.SetActive(false);
+        highScoreText.gameObject.SetActive(false);
         countdownText.gameObject.SetActive(true);
     }
     void SpawnBall()
@@ -93,16 +97,35 @@ public class GameManager : MonoBehaviour
         score += ScoreToAdd;
         scoreText.text = "Score: " + score;
         scoreAfterText.text = "Score: " + score;
-
+      
+        
+        
     }
 
     public void GameOver()
     {
+        
+            if (score > highScore)
+            {
+                highScore = score;
+            }
+        
+        else
+        {
+            if (score > highScore)
+            {
+                highScore = score;               
+            }
+        }
+        highScoreText.text = "High Score: " + highScore;
+
+
         gameOverText.gameObject.SetActive(true);       
         restartButton.gameObject.SetActive(true);
         backGround.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(false);
         scoreAfterText.gameObject.SetActive(true);
+        highScoreText.gameObject.SetActive(true);
 
         isGameActive = false;
         Time.timeScale= 0f;
